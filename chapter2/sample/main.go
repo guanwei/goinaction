@@ -1,10 +1,11 @@
 package main
 
 import (
-	_ "goinaction/chapter2/sample/matchers"
-	"goinaction/chapter2/sample/search"
 	"log"
 	"os"
+
+	_ "goinaction/chapter2/sample/matchers"
+	"goinaction/chapter2/sample/search"
 )
 
 // init is called prior to main.
