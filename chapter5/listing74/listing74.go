@@ -1,5 +1,4 @@
-// Sample program to show how unexported fields from an exported
-// struct type can't be accessed directly.
+// 这个示例程序展示公开的结构类型中如何访问未公开的内嵌类型的例子
 package main
 
 import (
@@ -8,14 +7,14 @@ import (
 	"goinaction/chapter5/listing74/entities"
 )
 
-// main is the entry point for the application.
+// main 是应用程序的入口
 func main() {
-	// Create a value of type Admin from the entities package.
+	// 创建entitles包中的Admin类型的值
 	a := entities.Admin{
 		Rights: 10,
 	}
 
-	// Set the exported fields from the unexported inner type.
+	// 设置未公开的内部类型的公开字段的值
 	a.Name = "Bill"
 	a.Email = "bill@email.com"
 

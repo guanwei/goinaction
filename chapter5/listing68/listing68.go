@@ -1,5 +1,4 @@
-// Sample program to show how the program can access a value
-// of an unexported identifier from another package.
+// 这个示例展示无法从另一个包里访问未公开的标识符的值
 package main
 
 import (
@@ -8,10 +7,9 @@ import (
 	"goinaction/chapter5/listing68/counters"
 )
 
-// main is the entry point for the application.
+// main 是应用程序的入口
 func main() {
-	// Create a variable of the unexported type using the exported
-	// New function from the package counters.
+	// 使用counters包公开的New函数来创建一个未公开的类型的变量
 	counter := counters.New(10)
 
 	fmt.Printf("Counter: %d\n", counter)

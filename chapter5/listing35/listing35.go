@@ -1,5 +1,4 @@
-// Sample program to show how a bytes.Buffer can also be used
-// with the io.Copy function.
+// 这个示例程序展示bytes.Buffer也可以用于io.Copy函数
 package main
 
 import (
@@ -9,15 +8,16 @@ import (
 	"os"
 )
 
+// main 是应用程序的入口
 func main() {
 	var b bytes.Buffer
 
-	// Write a string to the buffer.
+	// 将字符创写入Buffer
 	b.Write([]byte("Hello"))
 
-	// Use Fprintf to concatenate a string to the Buffer.
+	// 使用Fprintf将字符串拼接到Buffer
 	fmt.Fprintf(&b, "World!")
 
-	// Write the content of the Buffer to stdout.
+	// 将Buffer的内容写到Stdout
 	io.Copy(os.Stdout, &b)
 }

@@ -1,52 +1,51 @@
-// Sample program to show how to polymorphic behavior with interfaces.
+// 这个示例程序使用接口展示多态行为
 package main
 
 import "fmt"
 
-// notifier is an interfaces that defines notification type behavior.
+// notifier 是一个定义了通知类行为的接口
 type notifier interface {
 	notify()
 }
 
-// user defines a user in the program.
+// user 在程序里定义一个用户类型
 type user struct {
 	name  string
 	email string
 }
 
-// notify implements the notifier interface with a pointer recevier.
+// notify 使用指针接收者实现了notifier接口
 func (u *user) notify() {
 	fmt.Printf("Sending user email to %s<%s>\n",
 		u.name,
 		u.email)
 }
 
-// admin defines a admin in the program.
+// admin 定义了程序里的管理员
 type admin struct {
 	name  string
 	email string
 }
 
-// notify implements the notifier interface with a pointer receiver.
+// notify 使用指针接收者实现了notifier接口
 func (a *admin) notify() {
 	fmt.Printf("Sending admin email to %s<%s>\n",
 		a.name,
 		a.email)
 }
 
-// main is the entry point for the application.
+// main 是应用程序的入口
 func main() {
-	// Create a user value and pass it to sendNotification.
+	// 创建一个user值并传给sendNotification
 	bill := user{"Bill", "bill@email.com"}
 	sendNotification(&bill)
 
-	// Create an admin value and pass it to sendNotification.
+	// 创建一个admin值并传给sendNotification
 	lisa := admin{"Lisa", "lisa@email.com"}
 	sendNotification(&lisa)
 }
 
-// sendNotification accepts values that implement the notifier
-// interface and sends notifications.
+// sendNotification 接受一个实现了notifier接口值并发送通知
 func sendNotification(n notifier) {
 	n.notify()
 }

@@ -1,14 +1,14 @@
-// Package entities contains support for types of people in the system.
+// entities 包包含系统中与人有关的类型
 package entities
 
-// user defines a user in the program.
+// user 在程序里定义一个用户类型
 type user struct {
 	Name  string
 	Email string
 }
 
-// Admin defines an admin in the program.
+// Admin 在程序里定义了管理员
 type Admin struct {
-	user   // The embedded type is unexported.
+	user   // 嵌入的类型是未公开的
 	Rights int
 }

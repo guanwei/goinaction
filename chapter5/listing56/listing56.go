@@ -1,35 +1,35 @@
-// Sample program to show how embedded types work with interfaces.
+// 这个示例程序展示如何将嵌入类型应用于接口
 package main
 
 import "fmt"
 
-// notifier is an interface that defined notification type behavior.
+// notifier 是一个定义了通知类行为的接口
 type notifier interface {
 	notify()
 }
 
-// user defines a user in the program.
+// user 在程序里定义一个用户类型
 type user struct {
 	name  string
 	email string
 }
 
-// notify implements a method that can be called via a value of type user.
+// 通过user类型值的指针调用的方法
 func (u *user) notify() {
 	fmt.Printf("Sending user email to %s<%s>\n",
 		u.name,
 		u.email)
 }
 
-// admin represents an admin user with privileges.
+// admin 代表一个拥有权限的管理员用户
 type admin struct {
 	user
 	level string
 }
 
-// main is the entry point for the application.
+// main 是应用程序的入口
 func main() {
-	// Create an admin user.
+	// 创建一个admin用户
 	ad := admin{
 		user: user{
 			name:  "john smith",
@@ -38,14 +38,12 @@ func main() {
 		level: "super",
 	}
 
-	// Send the admin user a notification.
-	// The embedded inner type's implementation of the
-	// interface is "promoted" to the outer type.
+	// 给admin用户发送一个通知
+	// 用于实现接口的内部类型的方法，被提升到外部类型
 	sendNotification(&ad)
 }
 
-// sendNotification accepts values that implement the notifier
-// interface and sends notifications.
+// sendNotification 接受一个实现了notifier接口的值并发送通知
 func sendNotification(n notifier) {
 	n.notify()
 }

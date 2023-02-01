@@ -1,5 +1,4 @@
-// This sample program demonstates how to create goroutines and
-// how the goroutine scheduler behaves with two logical processor.
+// 这个示例程序展示如何创建goroutine以及goroutine调度器的行为
 package main
 
 import (
@@ -8,24 +7,24 @@ import (
 	"sync"
 )
 
-// main is the entry point for all Go programs.
+// main 是所有Go程序的入口
 func main() {
-	// Allocate two logical processors for the scheduler to use.
+	// 分配2个逻辑处理器给调度器使用
 	runtime.GOMAXPROCS(2)
 
-	// wg is used to wait for the program to finish.
-	// Add a count of two, one for each goroutine.
+	// wg 用来等待程序完成
+	// 计数加2，表示要等待两个goroutine
 	var wg sync.WaitGroup
 	wg.Add(2)
 
 	fmt.Println("Start Goroutines")
 
-	// Declare an anonymous function and create a goroutine.
+	// 声明一个匿名函数，并创建一个goroutine
 	go func() {
-		// Schedule the call to Done to tell main we are done.
+		// 在函数退出时调用Done来通知main函数工作已经完成
 		defer wg.Done()
 
-		// Display the alphabet three times.
+		// 显示字母表3次
 		for count := 0; count < 3; count++ {
 			for char := 'a'; char < 'a'+26; char++ {
 				fmt.Printf("%c", char)
@@ -33,12 +32,12 @@ func main() {
 		}
 	}()
 
-	// Declare an anonymous function and create a goroutine.
+	// 声明一个匿名函数，并创建一个goroutine
 	go func() {
-		// Schedule the call to Done to tell main we are done.
+		// 在函数退出时调用Done来通知main函数工作已经完成
 		defer wg.Done()
 
-		// Display the alphabet three times.
+		// 显示字母表3次
 		for count := 0; count < 3; count++ {
 			for char := 'A'; char < 'A'+26; char++ {
 				fmt.Printf("%c ", char)
@@ -46,7 +45,7 @@ func main() {
 		}
 	}()
 
-	// Wait for the goroutines to finish.
+	// 等待goroutine结束
 	fmt.Println("Waiting To Finish")
 	wg.Wait()
 

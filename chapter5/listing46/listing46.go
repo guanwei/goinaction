@@ -1,20 +1,20 @@
-// Sample program to show how you can't always get the address of a value.
+// 这个示例程序展示不是总能获取值的地址
 package main
 
 import "fmt"
 
-// duration is a type with a base type of int.
+// duration 是一个基于int类型的类型
 type duration int
 
-// format pretty-prints the duration value.
+// 使用更可读的方式格式化duration值
 func (d *duration) pretty() string {
 	return fmt.Sprintf("Duration: %d", *d)
 }
 
-// main is the entry point for the application.
+// main 是应用程序的入口
 func main() {
 	duration(42).pretty()
 
-	// ./listing46.go:16:14: cannot call pointer method on duration(42)
-	// ./listing46.go:16:14: cannot take the address of duration(42)
+	// ./listing46.go:16:14: 不能通过指针调用duration(42)的方法
+	// ./listing46.go:16:14: 不能获取duration(42)的地址
 }

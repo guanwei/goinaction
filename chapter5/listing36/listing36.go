@@ -1,40 +1,39 @@
-// Sample program to show how to use an interface in Go.
+// 这个示例程序展示Go语言里如何使用接口
 package main
 
 import "fmt"
 
-// notifier is an interface that defined notification type behavior.
+// notifier 是一个定义了通知类行为的接口
 type notifier interface {
 	notify()
 }
 
-// user defines a user in the program.
+// user 在程序里定义了一个用户类型
 type user struct {
 	name  string
 	email string
 }
 
-// notify implements a method with a pointer receiver.
+// notify 是使用指针接收者实现的方法
 func (u *user) notify() {
 	fmt.Printf("Sending user email to %s<%s>\n",
 		u.name,
 		u.email)
 }
 
-// main is the entry point for the application.
+// main 是应用程序的入口
 func main() {
-	// Create a value of type User and send a notification.
+	// 创建一个user类型的值，并发送通知
 	u := user{"Bill", "bill@example.com"}
 
 	sendNotifiaction(u)
 
-	// ./listing36.go:29:18: cannot use u (type user) as type
-	// notifier in argument to sendNotifiaction:
-	// user does not implement notifier (notify method has pointer receiver)
+	// ./listing36.go:29:18: 不能将u（类型是user）作为
+	// sendNotification的参数类型notifier：
+	// user类型并没有实现notifier（notify方法使用指针接收者声明）
 }
 
-// sendNotifiaction accepts values that implement the notifier
-// interface and sends notifications.
+// sendNotifiaction 接收一个实现了notifier接口的值并发送通知
 func sendNotifiaction(n notifier) {
 	n.notify()
 }
